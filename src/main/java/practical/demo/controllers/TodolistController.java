@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import practical.demo.dtos.request.ToDoListRequest;
-import practical.demo.dtos.request.response.ApiResponse;
+import practical.demo.dtos.response.ApiResponse;
 import practical.demo.models.ToDoList;
 import practical.demo.repositories.ToDoListRepository;
 
