@@ -4,12 +4,8 @@
  */
 package practical.demo.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
@@ -40,4 +36,8 @@ public class ToDoList {
    @UpdateTimestamp
    @Column (name = "updated_at")
    private Date updatedat;
+
+   @ManyToOne()
+   @JoinColumn(name = "user_id")
+   private User user;
 }

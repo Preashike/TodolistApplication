@@ -26,7 +26,7 @@ import practical.demo.repositories.UserRepository;
  * @author Angel
  */
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/users")
 public class UserController {
 
 @Autowired   

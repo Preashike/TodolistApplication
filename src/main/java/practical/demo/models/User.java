@@ -42,4 +42,13 @@ public class User {
    @Column(nullable = false)
    private boolean deleted;
 
+
 }
+
+// Entity Relationships
+/*
+* 1. One to Zero or One to One
+* 2. One to Zero or One to Many
+* 3. Many to One or Zero to One
+* 4. Many to Many
+* */
