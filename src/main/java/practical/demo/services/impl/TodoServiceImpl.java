@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package services.impl;
+package practical.demo.services.impl;
 
 import jakarta.persistence.EntityNotFoundException;
 import java.util.HashMap;
@@ -18,7 +18,7 @@ import practical.demo.dtos.response.ApiResponse;
 import practical.demo.models.ToDoList;
 import practical.demo.models.User;
 import practical.demo.repositories.ToDoListRepository;
-import services.TodoService;
+import practical.demo.services.TodoService;
 
 /**
  *

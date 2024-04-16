@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import practical.demo.dtos.request.ToDoListRequest;
 import practical.demo.models.ToDoList;
-import services.TodoService;
+import practical.demo.services.TodoService;
 
 /**
  *
