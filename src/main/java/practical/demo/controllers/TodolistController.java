@@ -35,9 +35,9 @@ public class TodolistController {
         return todoService.findAll();
     }
     
-    @PostMapping("{userid}/create")
-    public ToDoList createList(@PathVariable Long userId,@RequestBody ToDoList mylist) {
-        return todoService.createList(userId,mylist);
+    @PostMapping("/{userid}/create")
+    public ToDoList createList(@PathVariable Long userid,@RequestBody ToDoListRequest mylist) {
+        return todoService.createList(userid,mylist);
     }
     
     @PutMapping("/update/{id}")
@@ -48,6 +48,11 @@ public class TodolistController {
     @GetMapping("/lists/{id}")
     public ResponseEntity<Object> findlist(@PathVariable Long id) {
       return todoService.findList(id);
+    }   
+    
+    @GetMapping("/user/{userid}")
+    public ResponseEntity<List<ToDoList>> findUserTodo(@PathVariable Long userid){
+        return todoService.findUserTodo(userid);
     }
     
     @DeleteMapping("/soft-delete/{id}")

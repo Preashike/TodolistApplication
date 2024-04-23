@@ -18,6 +18,7 @@ import practical.demo.dtos.response.ApiResponse;
 import practical.demo.models.ToDoList;
 import practical.demo.models.User;
 import practical.demo.repositories.ToDoListRepository;
+import practical.demo.repositories.UserRepository;
 import practical.demo.services.TodoService;
 
 /**
@@ -29,6 +30,8 @@ import practical.demo.services.TodoService;
 public class TodoServiceImpl implements TodoService {
     @Autowired
     private ToDoListRepository todolistRepository;
+    @Autowired
+    private UserRepository userRepository;
 
 
     @Override
@@ -37,22 +40,22 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public ToDoList createList(Long userId, ToDoList myList) {
-        Optional<ToDoList> optionaltodolist = todolistRepository.findById(myList.getId());
+    public ToDoList createList(Long userId, ToDoListRequest myList) {
+        Optional<ToDoList> optionaltodolist = todolistRepository.findByTitle(myList.getTitle());
         if (optionaltodolist.isPresent()) {
-            throw new EntityNotFoundException("Todo is already present");
+            throw new EntityNotFoundException("Title is already present");
         }
 
         //Validate the ID
-
-        //Fetch User from the DB
-        User user = new User();
-
-
+        Optional<User> optionaluser = userRepository.findById(userId);
+        if (optionaluser.isEmpty()){
+            throw new EntityNotFoundException("UserId doesn't exist");
+        }
+       
         ToDoList todolist = new ToDoList();
-        todolist.setUser(user);
+        todolist.setUser(optionaluser.get());
         todolist.setTitle(myList.getTitle());
-        return todolistRepository.save(myList);
+        return todolistRepository.save(todolist);
     }
 
     @Override
@@ -95,6 +98,21 @@ public class TodoServiceImpl implements TodoService {
         todolistRepository.save(lists);
         return ResponseEntity.ok("Successful");
 
+    }
+    
+    @Override
+    public ResponseEntity<List<ToDoList>> findUserTodo(Long userid){
+        Optional<User> optionaluser =userRepository.findById(userid);
+        ApiResponse responseBody = new ApiResponse();
+        if (optionaluser.isEmpty()) {
+            responseBody.setMessage("Invalid User");
+            responseBody.setStatus(HttpStatus.NOT_FOUND.value());
+            return new ResponseEntity(responseBody, HttpStatus.NOT_FOUND);
+        }
+        List<ToDoList> toDolist = todolistRepository.findByUser(optionaluser.get());
+            responseBody.setMessage("Successful");
+            responseBody.setData(toDolist);
+            return new ResponseEntity(responseBody, HttpStatus.OK);   
     }
 
     @Override

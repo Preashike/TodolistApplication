@@ -36,6 +36,7 @@ public class ToDoList {
    private String title;
    @Column (nullable = false)
    private boolean done;
+   
    @CreationTimestamp
    @Column (name = "created_at", nullable = false, updatable = false)
    private Date createdat;

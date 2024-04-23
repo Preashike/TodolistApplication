@@ -16,11 +16,13 @@ import practical.demo.models.ToDoList;
 public interface TodoService {
     List<ToDoList> findAll();
 
-    ToDoList createList(Long userId,ToDoList myList);
+    ToDoList createList(Long userId,ToDoListRequest myList);
 
     ResponseEntity<Object> findList(Long id);
 
     ResponseEntity<Object> update (Long id, ToDoListRequest request);
 
     void delete (Long id);
+    
+    ResponseEntity<List<ToDoList>> findUserTodo(Long userid);
 }
